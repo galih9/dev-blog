@@ -1,0 +1,25 @@
+<div ngSkipHydration>
+  <label *ngIf="label">{{ label }}</label>
+  <ng-container *ngIf="type !== 'date'">
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [style.width]="width"
+      (input)="onInputChange($event)"
+    />
+  </ng-container>
+  <ng-container *ngIf="type === 'date'">
+    <div class="datepicker-container">
+      <input
+        class="w-full"
+        matInput
+        ngDefaultControl
+        [placeholder]="placeholder"
+        [matDatepicker]="picker"
+        (dateChange)="onDateChange($event)"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    </div>
+    <mat-datepicker #picker panelClass="datepickerOne"></mat-datepicker>
+  </ng-container>
+</div>

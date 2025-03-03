@@ -1,0 +1,63 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-toolbar class="head-container">
+      <span>App Title</span>
+      <mat-icon (click)="toggleSidenav()" class="menu-icon">menu</mat-icon>
+    </mat-toolbar>
+    <mat-nav-list>
+      <ng-container *ngFor="let route of routes; let i = index">
+        <ng-container
+          *ngIf="route.children && route.children.length; else singleLink"
+        >
+          <div
+            class="drawer"
+            [class.open]="route.open"
+            [class.animating]="route.animating"
+          >
+            <div class="drawer-header" (click)="toggleDrawer(route)">
+              <span class="title-sidenav">{{ route.title || route.path }}</span>
+              <mat-icon class="title-sidenav">{{
+                route.open ? "expand_less" : "expand_more"
+              }}</mat-icon>
+            </div>
+            <div class="drawer-content">
+              <ng-container *ngFor="let child of route.children; let j = index">
+                <a mat-list-item [routerLink]="[route.path, child.path]">
+                  <span class="title-sidenav">{{
+                    child.title || child.path
+                  }}</span>
+                </a>
+                <mat-divider
+                  *ngIf="j < route.children.length - 1"
+                ></mat-divider>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #singleLink>
+          <a mat-list-item [routerLink]="route.path">
+            <span class="title-sidenav">
+              {{ route.title || route.path }}
+            </span>
+          </a>
+        </ng-template>
+        <mat-divider *ngIf="i < routes.length - 1"></mat-divider>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content-background">
+    <mat-toolbar class="content-toolbar">
+      <!-- Back button if available -->
+      <mat-icon *ngIf="showBack" (click)="navigateBack()" class="back-icon">arrow_back</mat-icon>
+      <!-- existing menu button -->
+      <mat-icon 
+        (click)="toggleSidenav()" 
+        class="menu-icon" 
+        *ngIf="!sidenav.opened && !showBack">menu</mat-icon>
+      <span>{{ currentTitle }}</span>
+    </mat-toolbar>
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,19 @@
+<app-custom-table
+  [data]="paginatedData"
+  [columns]="displayedColumns"
+  [pipeArgs]="pipeArgs"
+  [sortFeature]="sortFeature"
+  [withNumber]="true"
+  (matSortChange)="onSortChange($event)"
+></app-custom-table>
+<app-custom-paginator
+  [length]="sampleData.length"
+  [pageSize]="pageSize"
+  [pageIndex]="pageIndex"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onPageChange($event)"
+></app-custom-paginator>
+
+<div style="display: flex; justify-content: end; margin-top: 15px;">
+  <app-custom-button label="Add" [onClick]="navigateToAddUser"></app-custom-button>
+</div>

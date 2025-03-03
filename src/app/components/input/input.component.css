@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+input {
+  /* Removed fixed width to allow inline style width */
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border: 1px solid #ccc; /* Replace $COL_MEDIUM_GREY with its equivalent hex value */
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.datepicker-container {
+  position: relative;
+}
+
+.datepicker-container input {
+  width: 100%;
+  padding-right: 2.5rem; /* Adjust padding to make space for the toggle button */
+}
+
+.mat-datepicker-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #007bff;
+}

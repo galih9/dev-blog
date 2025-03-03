@@ -1,0 +1,38 @@
+@use "../../utils/constant/colors.scss" as *;
+
+:host ::ng-deep .custom-table {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid $COL_MEDIUM_GREY;
+  overflow: hidden; // Add this line to ensure the border-radius is applied correctly
+
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 8px;
+    text-align: left;
+  }
+
+  .mat-row:nth-child(odd) {
+    background-color: $COL_WHITE;
+  }
+
+  .mat-row:nth-child(even) {
+    background-color: $COL_LIGHT_GREY;
+  }
+
+  .mat-row-head {
+    background-color: $COL_LIGHT_GREY2;
+  }
+
+  .mat-column-no {
+    border-right: 1px solid $COL_MEDIUM_GREY;
+  }
+
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+  }
+  .mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+  }
+}

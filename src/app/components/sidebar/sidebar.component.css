@@ -1,0 +1,135 @@
+.example-container {
+  height: 100vh;
+}
+.example-container .head-container {
+  display: flex;
+  justify-content: space-between;
+  height: 64px; /* Match the height of the toolbar */
+  align-items: center; /* Center items vertically */
+  padding: 0 16px; /* Add padding to match the toolbar */
+  box-sizing: border-box; /* Ensure padding is included in the height */
+}
+
+.title-sidenav {
+  color: black;
+}
+
+.content-wrapper {
+  padding: 15px;
+  background-color: #cdcdcd;
+  flex: 1; /* Ensure it takes up remaining space */
+}
+
+.content-background {
+  min-height: 100vh; /* Ensure it covers the full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+
+mat-sidenav {
+  width: 250px;
+  background: white;
+  color: white;
+  padding: 0; /* Remove padding to make it seamless */
+  border-radius: 0; /* Remove border-radius */
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.menu-logo {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.menu-icon {
+  cursor: pointer;
+  margin-right: 10px;
+  color: white;
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 64px; /* Match the height of the toolbar */
+  display: flex;
+  align-items: center;
+  padding: 0 16px; /* Add padding to match the toolbar */
+  box-sizing: border-box; /* Ensure padding is included in the height */
+}
+
+mat-nav-list a {
+  color: white;
+  font-weight: bold;
+  border-radius: 4px; /* Default border-radius for mat-card */
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+}
+
+mat-nav-list {
+  padding: 10px;
+}
+
+mat-nav-list a:hover,
+mat-nav-list a.mat-list-item.mat-list-item-selected {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.drawer {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-header {
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-content {
+  padding: 10px 15px;
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.drawer.open .drawer-content {
+  display: block;
+  max-height: 500px; /* Adjust based on the content height */
+}
+
+.drawer.animating .drawer-content {
+  transition: max-height 0.3s ease-in-out;
+}
+
+mat-toolbar {
+  background: #3f51b5;
+  color: white;
+  height: 64px; /* Set a fixed height to match the sidebar toolbar */
+}
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0; /* Remove padding to make it seamless */
+  background: white;
+}
+
+.custom-divider {
+  background-color: lightgrey;
+}
+
+.content-toolbar {
+  height: 64px; /* Ensure the toolbar has a fixed height */
+  flex-shrink: 0; /* Prevent the toolbar from shrinking */
+}

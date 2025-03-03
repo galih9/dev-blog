@@ -1,0 +1,4 @@
+<button mat-button [disabled]="disabled || isLoading" (click)="handleClick()">
+  <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+  <span *ngIf="!isLoading">{{ label }}</span>
+</button>

@@ -1,12 +1,28 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, SidebarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'learn-japanese-platform';
+export class AppComponent implements AfterViewInit {
+  title = 'galih-portfolio';
+
+  @ViewChild(SidebarComponent) sidebar!: SidebarComponent;
+
+  ngAfterViewInit() {
+    // Ensure the sidebar is initialized
+  }
+
+  toggleSidebar() {
+    this.sidebar.toggleSidenav();
+  }
+
+  onSidebarToggled() {
+    console.log('Sidebar toggled');
+  }
 }
