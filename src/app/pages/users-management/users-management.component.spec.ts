@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UsersManagementComponent } from './users-management.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('UsersManagementComponent', () => {
   let component: UsersManagementComponent;
@@ -8,7 +9,7 @@ describe('UsersManagementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UsersManagementComponent]
+      imports: [RouterTestingModule,UsersManagementComponent]
     })
     .compileComponents();
 

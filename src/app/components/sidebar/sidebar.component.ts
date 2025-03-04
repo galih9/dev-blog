@@ -16,7 +16,7 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouteService } from '../../services/route.service';
 import { Location } from '@angular/common';
-
+import { RouterTestingModule } from "@angular/router/testing";
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -28,6 +28,7 @@ import { Location } from '@angular/common';
     MatIconModule,
     MatToolbarModule,
     RouterModule,
+    RouterTestingModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],

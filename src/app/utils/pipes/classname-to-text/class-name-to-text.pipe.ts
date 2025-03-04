@@ -24,7 +24,7 @@ export class ClassNameToTextPipe implements PipeTransform {
         if (+match === 0) return ''; // or if (/\s+/.test(match)) for white spaces
         return index === 0 ? match.toLowerCase() : match.toUpperCase();
       });
-    } else {
+    } else if (toType === 'normal' && fromType === 'camelCase') {
       result = result.charAt(0).toUpperCase() + result.slice(1);
     }
 

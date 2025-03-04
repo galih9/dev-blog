@@ -7,7 +7,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   standalone: true,
   imports: [CommonModule, SidebarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.css',
 })
 export class AppComponent implements AfterViewInit {
   title = 'galih-portfolio';
