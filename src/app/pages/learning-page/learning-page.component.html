@@ -1,0 +1,113 @@
+<div class="bg-white rounded-md gap-4 p-4 grid grid-cols-2">
+  <div class="border border-gray-200 p-3 rounded-md">
+    <div class="text-3xl p-3">Hiragana</div>
+    <div class="grid grid-cols-5 gap-4">
+      <div
+        *ngFor="let hiragana of hiraganaCharacter; let i = index"
+        class="p-4 border rounded shadow"
+      >
+        <div>
+          <p class="text-3xl font-bold text-center">
+            {{ hiragana.hira }}
+          </p>
+          <p class="text-base font-light text-center">
+            {{ hiragana.alpha }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border border-gray-200 p-3 rounded-md">
+    <div class="text-3xl p-3">Katakana</div>
+    <div class="grid grid-cols-5 gap-4">
+      <div
+        *ngFor="let katakana of katakanaCharacter; let i = index"
+        class="p-4 border rounded shadow"
+      >
+        <div>
+          <p class="text-3xl font-bold text-center">
+            {{ katakana.hira }}
+          </p>
+          <p class="text-base font-light text-center">
+            {{ katakana.alpha }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border border-gray-200 p-3 rounded-md">
+    <div class="text-3xl p-3">Hiragana Dakuon</div>
+    <div class="grid grid-cols-5 gap-4">
+      <div
+        *ngFor="let hiragana of hiraganaDakuon; let i = index"
+        class="p-4 border rounded shadow"
+      >
+        <div>
+          <p class="text-3xl font-bold text-center">
+            {{ hiragana.hira }}
+          </p>
+          <p class="text-base font-light text-center">
+            {{ hiragana.alpha }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border border-gray-200 p-3 rounded-md">
+    <div class="text-3xl p-3">Katakana Dakuon</div>
+    <div class="grid grid-cols-5 gap-4">
+      <div
+        *ngFor="let katakana of katakanaDakuon; let i = index"
+        class="p-4 border rounded shadow"
+      >
+        <div>
+          <p class="text-3xl font-bold text-center">
+            {{ katakana.hira }}
+          </p>
+          <p class="text-base font-light text-center">
+            {{ katakana.alpha }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="border border-gray-200 p-3 rounded-md">
+    <div class="text-3xl p-3">Hiragana Yoon</div>
+    <div class="grid grid-cols-3 gap-4">
+      <div
+        *ngFor="let hiragana of hiraganaYoon; let i = index"
+        class="p-4 border rounded shadow"
+      >
+        <div>
+          <p class="text-3xl font-bold text-center">
+            {{ hiragana.hira }}
+          </p>
+          <p class="text-base font-light text-center">
+            {{ hiragana.alpha }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border border-gray-200 p-3 rounded-md">
+    <div class="text-3xl p-3">Katakana Yoon</div>
+    <div class="grid grid-cols-3 gap-4">
+      <div
+        *ngFor="let katakana of katakanaYoon; let i = index"
+        class="p-4 border rounded shadow"
+      >
+        <div>
+          <p class="text-3xl font-bold text-center">
+            {{ katakana.hira }}
+          </p>
+          <p class="text-base font-light text-center">
+            {{ katakana.alpha }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
