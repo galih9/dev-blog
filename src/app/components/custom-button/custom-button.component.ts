@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
@@ -14,8 +14,10 @@ export class CustomButtonComponent {
   @Input() onClick: () => void = () => {};
   @Input() isLoading: boolean = false;
   @Input() disabled: boolean = false;
+  @Output() customButtonClicked = new EventEmitter<void>();
 
   handleClick() {
+    this.customButtonClicked.emit();
     if (this.onClick) {
       this.onClick();
     }
