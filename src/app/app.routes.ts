@@ -7,6 +7,7 @@ import { LearningPageComponent } from './pages/learning-page/learning-page.compo
 import { AuthGuard } from './auth.guard';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
+import { CreatePostComponent } from './pages/create-post/create-post.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -17,6 +18,12 @@ export const routes: Routes = [
     title: 'Users Management',
     canActivate: [AuthGuard],
     component: UsersManagementComponent,
+  },
+  {
+    path: 'create-post',
+    title: 'Create Post',
+    canActivate: [AuthGuard],
+    component: CreatePostComponent,
   },
   {
     path: 'learning-page',

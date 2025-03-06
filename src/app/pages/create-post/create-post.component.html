@@ -1,1 +1,12 @@
-<p>create-post works!</p>
+<div class="bg-white rounded-md p-4 ">
+    <app-input label="Title"></app-input>
+    <app-label [label]="'Content'"></app-label>
+  <div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+    <ngx-editor
+      [editor]="editor"
+      [ngModel]="html"
+      [placeholder]="'Type here...'"
+    ></ngx-editor>
+  </div>
+</div>
