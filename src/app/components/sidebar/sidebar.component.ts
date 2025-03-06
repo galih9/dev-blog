@@ -16,6 +16,9 @@ import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouteService } from '../../services/route.service';
 import { Location } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -27,6 +30,7 @@ import { Location } from '@angular/common';
     MatIconModule,
     MatToolbarModule,
     RouterModule,
+    MatMenuModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
@@ -38,7 +42,7 @@ export class SidebarComponent implements AfterViewInit, OnInit {
   currentTitle: string = '';
   showBack: boolean = false;
 
-  constructor(private routeService: RouteService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) {
+  constructor(private routeService: RouteService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location, private authService: AuthService) {
     this.routes = this.routeService
       .getRoutes()
       .filter((e) => e.title != undefined);
@@ -89,5 +93,13 @@ export class SidebarComponent implements AfterViewInit, OnInit {
     this.location.back();
     // Clear query parameters after navigating back
     this.location.replaceState(this.router.url.split('?')[0]);
+  }
+
+  onProfileAction(action: string) {
+    if (action === 'logout') {
+      this.authService.logout();
+    } else if (action === 'profile') {
+      this.router.navigate(['/user-info'], { queryParams: { showBack: true, sidebarTitle: 'User Information' } });
+    }
   }
 }

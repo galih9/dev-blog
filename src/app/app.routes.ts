@@ -6,10 +6,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LearningPageComponent } from './pages/learning-page/learning-page.component';
 import { AuthGuard } from './auth.guard';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { UserInfoComponent } from './pages/user-info/user-info.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', title: 'Dashboard', component: DashboardComponent },
+  { path: 'user-info', component: UserInfoComponent },
   {
     path: 'users-management',
     title: 'Users Management',

@@ -1,7 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
 import { Auth, GoogleAuthProvider, signInWithPopup, User } from '@angular/fire/auth';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -23,6 +21,10 @@ export class AuthService {
     return new Observable((observer) => {
       return this.auth.onAuthStateChanged(observer);
     });
+  }
+
+  getCurrentUser(): User | null {
+    return this.auth.currentUser;
   }
 
 }

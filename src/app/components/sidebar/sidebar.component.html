@@ -46,15 +46,43 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="content-background">
-    <mat-toolbar class="content-toolbar">
-      <!-- Back button if available -->
-      <mat-icon *ngIf="showBack" (click)="navigateBack()" class="back-icon">arrow_back</mat-icon>
-      <!-- existing menu button -->
-      <mat-icon 
-        (click)="toggleSidenav()" 
-        class="menu-icon" 
-        *ngIf="!sidenav.opened && !showBack">menu</mat-icon>
-      <span>{{ currentTitle }}</span>
+    <mat-toolbar class="content-toolbar justify-between">
+      <div>
+        <!-- Back button if available -->
+        <mat-icon *ngIf="showBack" (click)="navigateBack()" class="back-icon"
+          >arrow_back</mat-icon
+        >
+        <!-- existing menu button -->
+        <mat-icon
+          (click)="toggleSidenav()"
+          class="menu-icon"
+          *ngIf="!sidenav.opened && !showBack"
+          >menu</mat-icon
+        >
+        <span>{{ currentTitle }}</span>
+      </div>
+      <!-- Profile icon with dropdown -->
+      <div
+        class="w-12 h-12 bg-white flex items-center rounded-4xl cursor-pointer"
+      >
+        <mat-menu #profileMenu="matMenu">
+          <button mat-menu-item (click)="onProfileAction('profile')">
+            My Profile
+          </button>
+          <button mat-menu-item (click)="onProfileAction('logout')">
+            Logout
+          </button>
+        </mat-menu>
+
+        <mat-icon
+          aria-hidden="false"
+          aria-label="profile"
+          fontIcon="account_circle"
+          [matMenuTriggerFor]="profileMenu"
+          class="ml-3"
+          style="color: grey; transform: scale(2)"
+        ></mat-icon>
+      </div>
     </mat-toolbar>
     <div class="content-wrapper">
       <router-outlet></router-outlet>

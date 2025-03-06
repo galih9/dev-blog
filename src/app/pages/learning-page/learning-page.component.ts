@@ -30,57 +30,7 @@ export class LearningPageComponent {
 
   constructor() {
     this.hiraganaCharacter = hiragana;
-    this.hiraganaCharacter.splice(36, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-36',
-    });
-    this.hiraganaCharacter.splice(38, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-38',
-    });
-    this.hiraganaCharacter.splice(46, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-46',
-    });
-    this.hiraganaCharacter.splice(47, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-47',
-    });
-    this.hiraganaCharacter.splice(48, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-48',
-    });
     this.katakanaCharacter = katakana;
-    this.katakanaCharacter.splice(36, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-36',
-    });
-    this.katakanaCharacter.splice(38, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-38',
-    });
-    this.katakanaCharacter.splice(46, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-46',
-    });
-    this.katakanaCharacter.splice(47, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-47',
-    });
-    this.katakanaCharacter.splice(48, 0, {
-      hira: '',
-      alpha: '',
-      id: 'empty-48',
-    });
     this.hiraganaDakuon = hiraganaDa;
     this.katakanaDakuon = katakanaDa;
     this.hiraganaYoon = hiraganaYo;

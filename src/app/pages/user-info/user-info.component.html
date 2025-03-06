@@ -1,0 +1,9 @@
+<!-- ...existing code... -->
+<div *ngIf="user">
+  <p>User Info:</p>
+  <p>Name: {{ user.displayName }}</p>
+  <p>Email: {{ user.email }}</p>
+</div>
+<div *ngIf="!user">
+  <p>No user is logged in.</p>
+</div>
