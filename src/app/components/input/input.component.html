@@ -1,12 +1,23 @@
 <div ngSkipHydration>
   <label *ngIf="label">{{ label }}</label>
-  <ng-container *ngIf="type !== 'date'">
+  <ng-container *ngIf="type === 'text'">
     <input
       [type]="type"
       [placeholder]="placeholder"
       [style.width]="width"
       (input)="onInputChange($event)"
     />
+  </ng-container>
+  <ng-container *ngIf="type === 'file'">
+    <div class="file-input-container">
+      <input
+        [type]="type"
+        [placeholder]="placeholder"
+        [style.width]="width"
+        (input)="onInputChange($event)"
+      />
+      <mat-icon matSuffix fontIcon="file_upload"></mat-icon>
+    </div>
   </ng-container>
   <ng-container *ngIf="type === 'date'">
     <div class="datepicker-container">

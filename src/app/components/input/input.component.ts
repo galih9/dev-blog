@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core'; 
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; // <-- newly added
 
@@ -17,7 +17,7 @@ import { MatInputModule } from '@angular/material/input'; // <-- newly added
     MatInputModule, // <-- updated
   ],
 })
-export class InputComponent {
+export class InputComponent implements OnInit {
   @Input() label: string = '';
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
@@ -25,11 +25,25 @@ export class InputComponent {
 
   value: string = '';
 
+  ngOnInit(): void {
+    this.calculateType();
+  }
+
+  calculateType(): string {
+    if (this.type === 'date') {
+      return 'date';
+    }
+    return 'text';
+  }
+
   onInputChange(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     this.value = inputElement.value;
   }
 
+  onFileChange(event: any): void {
+    // this.value = event.value;
+  }
   // New method to handle datepicker date changes
   onDateChange(event: any): void {
     this.value = event.value;
