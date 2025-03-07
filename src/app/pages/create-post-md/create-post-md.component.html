@@ -1,0 +1,23 @@
+<div class="bg-white rounded-md p-4">
+  <div class="w-full h-full flex gap-4">
+    <div class="w-1/2 p-3 border rounded-md">
+      <textarea
+        [(ngModel)]="html"
+        class="w-full h-full border-none outline-none"
+        placeholder="Enter your markdown here..."
+      ></textarea>
+    </div>
+    <div class="w-1/2 h-full p-3 border rounded-md">
+      <markdown class="w-full h-full overflow-y-auto" [data]="html"></markdown>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: end; margin-top: 15px">
+    <app-custom-button
+      [label]="'Submit'"
+      [onClick]="submitPost"
+      [isLoading]="false"
+      [disabled]="false"
+    ></app-custom-button>
+  </div>
+</div>
