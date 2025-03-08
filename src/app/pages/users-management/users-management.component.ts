@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
 import { CustomPaginatorComponent } from '../../components/custom-paginator/custom-paginator.component';
 import { IUser } from './types';
 import { Sort } from '@angular/material/sort';
 import { CustomButtonComponent } from '../../components/custom-button/custom-button.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from '../../services/users.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users-management',
@@ -17,111 +18,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './users-management.component.html',
   styleUrl: './users-management.component.css',
 })
-export class UsersManagementComponent {
-  constructor(private router: Router, private route: ActivatedRoute) {}
+export class UsersManagementComponent implements OnInit {
+  constructor() {}
 
-  sampleData: IUser[] = [
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: 'test',
-      birthDate: '19-08-2000',
-    },
-    {
-      name: 'Test User 2',
-      fullName: 'Test',
-      email: 'Test2@mail.ru',
-      homeAddress: 'test',
-      birthDate: '',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: '',
-      birthDate: '',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: '',
-      birthDate: '',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: '',
-      birthDate: '',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: '',
-      birthDate: '',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: '',
-      birthDate: '',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: '',
-      birthDate: '',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: 'test',
-      birthDate: '19-08-2000',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: 'test',
-      birthDate: '19-08-2000',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: 'test',
-      birthDate: '19-08-2000',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: 'test',
-      birthDate: '19-08-2000',
-    },
-    {
-      name: 'Test User 1',
-      fullName: 'Test',
-      email: 'Test@mail.ru',
-      homeAddress: 'test',
-      birthDate: '19-08-2000',
-    },
-  ];
+  sampleData: IUser[] = [];
   displayedColumns: string[] = [
-    'name',
-    'fullName',
+    'uid',
+    'displayName',
     'email',
-    'homeAddress',
-    'birthDate',
+    'createdAt',
+    'lastLogin',
   ];
   pipeArgs = {
-    birthDate: ['DD-MM-YYYY'],
+    createdAt: ['DD/MM/YYYY, HH:mm:ss'],
+    lastLogin: ['DD/MM/YYYY, HH:mm:ss'],
   };
   pageSize = 5;
   pageIndex = 0;
@@ -129,25 +39,40 @@ export class UsersManagementComponent {
   sortFeature = true;
   activeSort: Sort = { active: '', direction: '' };
 
+  users$: Observable<IUser[]> | undefined;
+  private userService = inject(UsersService);
+
+  ngOnInit(): void {
+    this.users$ = this.userService.getUsers();
+    this.users$.subscribe((users) => {
+      this.sampleData = users;
+    });
+  }
+
   get paginatedData(): IUser[] {
     let data = this.sampleData.slice();
     if (this.activeSort.active && this.activeSort.direction) {
       data = data.sort((a, b) => {
         const isAsc = this.activeSort.direction === 'asc';
         switch (this.activeSort.active) {
-          case 'name':
-          case 'fullName':
+          case 'uid':
+          case 'displayName':
           case 'email':
-          case 'homeAddress':
             return this.compare(
               a[this.activeSort.active],
               b[this.activeSort.active],
               isAsc
             );
-          case 'birthDate':
+          case 'createdAt':
             return this.compare(
-              new Date(a.birthDate),
-              new Date(b.birthDate),
+              new Date(a.createdAt),
+              new Date(b.createdAt),
+              isAsc
+            );
+          case 'lastLogin':
+            return this.compare(
+              new Date(a.lastLogin),
+              new Date(b.lastLogin),
               isAsc
             );
           default:
@@ -174,6 +99,8 @@ export class UsersManagementComponent {
   }
 
   navigateToAddUser = () => {
-    this.router.navigate(['/form'], { queryParams: { showBack: true, sidebarTitle: 'Add User' } });
-  }
+    // this.router.navigate(['/form'], {
+    //   queryParams: { showBack: true, sidebarTitle: 'Add User' },
+    // });
+  };
 }

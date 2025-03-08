@@ -11,15 +11,15 @@ import { CommonModule } from '@angular/common';
 })
 export class CustomButtonComponent {
   @Input() label: string = '';
-  @Input() onClick: () => void = () => {};
+  @Input() onClick: (e?: any) => void = (e?: any) => {};
   @Input() isLoading: boolean = false;
   @Input() disabled: boolean = false;
   @Output() customButtonClicked = new EventEmitter<void>();
 
-  handleClick() {
-    this.customButtonClicked.emit();
+  handleClick(e?: any) {
+    this.customButtonClicked.emit(e);
     if (this.onClick) {
-      this.onClick();
+      this.onClick(e);
     }
   }
 }

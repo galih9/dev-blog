@@ -14,24 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class CreatePostMdComponent {
   private contentService = inject(ContentService);
   private snackBar = inject(MatSnackBar);
-  html = `# H1
-## H2
-### H3
-#### H4
-##### H5
-###### H
----
-# btw test
-asdasdasdnasdjasdnasjdn
-
-> 123
-> 123
->> 123
->> 123
----
-test
-
-`;
+  html = ``;
   title = '';
 
   // ngOnInit(): void {

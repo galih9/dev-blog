@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomButtonComponent } from '../../components/custom-button/custom-button.component';
 import { AuthService } from '../../services/auth.service';
 import { EventEmitter } from '@angular/core';
@@ -15,7 +15,7 @@ import { EventEmitter } from '@angular/core';
     CustomButtonComponent,
   ],
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent {
   email: string = '';
@@ -24,20 +24,16 @@ export class LoginPageComponent {
   errorMessage: string = '';
   loginWithGoogleEvent: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {
+  constructor(private authService: AuthService) {
     this.loginWithGoogleEvent.subscribe(() => this.loginWithGoogle());
   }
 
   async loginWithGoogle() {
     this.isLoading = true;
+    this.errorMessage = '';
 
-    console.log('clicked')
     try {
       await this.authService.googleSignIn();
-      this.router.navigate(['/dashboard']);
     } catch (error) {
       this.errorMessage = (error as any).message;
     } finally {

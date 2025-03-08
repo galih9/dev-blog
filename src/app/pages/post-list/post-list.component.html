@@ -3,7 +3,10 @@
     <div *ngFor="let article of articles" class="max-w-sm bg-white rounded-md overflow-hidden shadow-lg my-4">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ article.title }}</div>
-        <p class="text-gray-700 text-base" [innerHTML]="sanitizeContent(article.content)"></p>
+        <markdown class="w-full h-full overflow-y-auto" [data]="article.content"></markdown>
+        <div class="pt-3 flex justify-end">
+          <button (click)="deletePost(article.id)">Delete</button>
+        </div>
       </div>
     </div>
   </div>
