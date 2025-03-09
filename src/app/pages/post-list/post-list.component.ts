@@ -46,21 +46,21 @@ export class PostListComponent implements OnInit {
   };
 
   deletePost = (id: string) => {
-    this.contentService
-      .deleteArticle(id)
-      .then(() => {
-        this.snackBar.open('Post deleted successfully!', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-        });
-      })
-      .catch((error) => {
-        this.snackBar.open('Someething went wrong!', 'Close', {
-          duration: 3000,
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-        });
-      });
+    // this.contentService
+    //   .deleteArticle(id)
+    //   .then(() => {
+    //     this.snackBar.open('Post deleted successfully!', 'Close', {
+    //       duration: 3000,
+    //       horizontalPosition: 'right',
+    //       verticalPosition: 'top',
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     this.snackBar.open('Someething went wrong!', 'Close', {
+    //       duration: 3000,
+    //       horizontalPosition: 'right',
+    //       verticalPosition: 'top',
+    //     });
+    //   });
   };
 }

@@ -31,6 +31,7 @@ export interface IUser {
 }
 export interface IComment {
   comment: string;
-  uid: string | undefined | null;
+  uid?: string | undefined | null;
+  displayName?: string | undefined | null;
   postId: string;
 }

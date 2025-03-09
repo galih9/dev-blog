@@ -9,6 +9,54 @@
       <p>Posted on: {{ article.postedDate ?? "-" }}</p>
       <p>Last Modified: {{ article.lastModified ?? "-" }}</p>
     </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="mt-3">
+      <app-input
+        *ngIf="user === null"
+        label="Show As"
+        [(ngModel)]="displayName"
+        name="commentAnon"
+        ngDefaultControl
+        class="w-full mb-2"
+      ></app-input>
+
+      <app-input
+        label="Comment"
+        [(ngModel)]="comment"
+        name="comment"
+        ngDefaultControl
+        class="w-full mb-2"
+      ></app-input>
+      <div class="flex justify-end pb-4">
+        <button
+          (disabled)="(comment == '')"
+          (click)="postComment()"
+          class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md transition-colors duration-200 w-full sm:w-auto"
+        >
+          Add Comment
+        </button>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <div class="mt-3">
+      <p class="font-bold mb-3">Comments :</p>
+
+      <div *ngIf="listComment.length > 0">
+        <div
+          *ngFor="let comment of listComment"
+          class="mb-4 p-3 border rounded-md"
+        >
+          <p class="font-semibold">
+            {{ comment?.displayName ?? "Anonymous" }}:
+          </p>
+          <p>{{ comment.comment }}</p>
+        </div>
+      </div>
+      <p *ngIf="listComment.length === 0">No comments yet.</p>
+    </div>
   </div>
 </div>
 <p *ngIf="!article && id">Loading...</p>

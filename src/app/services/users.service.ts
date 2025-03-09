@@ -2,10 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import {
   collection,
   collectionData,
-  Firestore,
-  addDoc,
-  deleteDoc,
-  doc,
+  Firestore
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

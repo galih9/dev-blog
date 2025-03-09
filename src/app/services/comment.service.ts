@@ -26,6 +26,7 @@ export class CommentService {
       map((response: any[]) => {
         return response.map((doc: any) => ({
           comment: doc['comment'],
+          displayName: doc['displayName'],
           postId: doc['postId'],
           uid: doc['uid'],
           id: doc['id'],
@@ -34,8 +35,13 @@ export class CommentService {
     );
   }
 
-  addComment(uid: string | null | undefined, comment: string, postId: string) {
-    const c = { comment, uid, postId };
+  addComment(
+    uid: string | null | undefined,
+    comment: string,
+    postId: string,
+    displayName?: string | null | undefined
+  ) {
+    const c = { comment, uid, postId, displayName };
     const commentCollection = collection(this.db, 'comments');
     return addDoc(commentCollection, c);
   }

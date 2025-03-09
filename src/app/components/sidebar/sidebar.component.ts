@@ -6,6 +6,9 @@ import {
   Output,
   EventEmitter,
   inject,
+  HostListener,
+  Inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -20,7 +23,7 @@ import {
   NavigationExtras,
   NavigationEnd,
 } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouteService } from '../../services/route.service';
 import { Location } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
@@ -52,12 +55,25 @@ export class SidebarComponent implements AfterViewInit, OnInit {
   showBack: boolean = false;
   private snackBar = inject(MatSnackBar);
 
+  isMobile = false; // Initially set to false
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkScreenSize();
+    }
+  }
+
   constructor(
     private routeService: RouteService,
     private router: Router,
     private location: Location,
-    private authService: AuthService
+    private authService: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkScreenSize();
+    }
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras && navigation.extras.state) {
       const state = navigation.extras.state as {
@@ -162,5 +178,15 @@ export class SidebarComponent implements AfterViewInit, OnInit {
       return routeData ? routeData.title : '';
     }
     return '';
+  }
+  checkScreenSize() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth < 768;
+      if (!this.isMobile && this.sidenav) {
+        this.sidenav.open();
+      } else if (this.isMobile && this.sidenav) {
+        this.sidenav.close();
+      }
+    }
   }
 }

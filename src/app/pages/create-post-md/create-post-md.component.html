@@ -4,26 +4,28 @@
     [(ngModel)]="title"
     name="titleName"
     ngDefaultControl
+    class="w-full mb-4"
   ></app-input>
-  <div class="grid grid-cols-2 gap-4">
 
+  <div class="sm:grid sm:grid-cols-2 sm:gap-4">
     <app-label label="Content"></app-label>
     <app-label label="Preview"></app-label>
   </div>
-  <div class="w-full h-full flex gap-4">
-    <div class="w-1/2 p-3 border rounded-md">
+
+  <div class="flex flex-col sm:flex-row gap-4">
+    <div class="w-full sm:w-1/2 p-3 border rounded-md">
       <textarea
         [(ngModel)]="html"
-        class="w-full h-full border-none outline-none"
+        class="w-full h-64 sm:h-full border-none outline-none"
         placeholder="Enter your markdown here..."
       ></textarea>
     </div>
-    <div class="w-1/2 h-full p-3 border rounded-md">
-      <markdown class="w-full h-full overflow-y-auto" [data]="html"></markdown>
+    <div class="w-full sm:w-1/2 p-3 border rounded-md">
+      <markdown class="w-full h-64 sm:h-full overflow-y-auto" [data]="html"></markdown>
     </div>
   </div>
 
-  <div style="display: flex; justify-content: end; margin-top: 15px">
+  <div class="mt-4 flex justify-end">
     <app-custom-button
       [label]="'Submit'"
       [onClick]="submitPost"

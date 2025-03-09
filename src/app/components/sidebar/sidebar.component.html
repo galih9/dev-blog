@@ -1,8 +1,15 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" opened>
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile"
+    class="z-50"
+  >
     <mat-toolbar class="head-container">
       <span>App Title</span>
-      <mat-icon (click)="toggleSidenav()" class="menu-icon">menu</mat-icon>
+      <mat-icon (click)="toggleSidenav()" class="menu-icon" *ngIf="isMobile">
+        menu
+      </mat-icon>
     </mat-toolbar>
     <mat-nav-list>
       <ng-container *ngFor="let route of routes; let i = index">
@@ -16,16 +23,16 @@
           >
             <div class="drawer-header" (click)="toggleDrawer(route)">
               <span class="title-sidenav">{{ route.title || route.path }}</span>
-              <mat-icon class="title-sidenav">{{
-                route.open ? "expand_less" : "expand_more"
-              }}</mat-icon>
+              <mat-icon class="title-sidenav">
+                {{ route.open ? "expand_less" : "expand_more" }}
+              </mat-icon>
             </div>
             <div class="drawer-content">
               <ng-container *ngFor="let child of route.children; let j = index">
                 <a mat-list-item [routerLink]="[route.path, child.path]">
-                  <span class="title-sidenav">{{
-                    child.title || child.path
-                  }}</span>
+                  <span class="title-sidenav">
+                    {{ child.title || child.path }}
+                  </span>
                 </a>
                 <mat-divider
                   *ngIf="j < route.children.length - 1"
@@ -48,20 +55,18 @@
   <mat-sidenav-content class="content-background">
     <mat-toolbar class="content-toolbar justify-between">
       <div>
-        <!-- Back button if available -->
-        <mat-icon *ngIf="showBack" (click)="navigateBack()" class="back-icon"
-          >arrow_back</mat-icon
-        >
-        <!-- existing menu button -->
+        <mat-icon *ngIf="showBack" (click)="navigateBack()" class="back-icon">
+          arrow_back
+        </mat-icon>
         <mat-icon
           (click)="toggleSidenav()"
           class="menu-icon"
-          *ngIf="!sidenav.opened && !showBack"
-          >menu</mat-icon
+          *ngIf="isMobile && !sidenav.opened && !showBack"
         >
+          menu
+        </mat-icon>
         <span>{{ currentTitle }}</span>
       </div>
-      <!-- Profile icon with dropdown -->
       <div
         class="w-12 h-12 bg-white flex items-center rounded-4xl cursor-pointer"
       >
@@ -85,6 +90,11 @@
       </div>
     </mat-toolbar>
     <div class="content-wrapper">
+      <div
+        *ngIf="isMobile && sidenav.opened"
+        class="fixed inset-0 bg-black opacity-50 z-40"
+        (click)="toggleSidenav()"
+      ></div>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

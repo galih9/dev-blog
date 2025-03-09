@@ -36,11 +36,11 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     component: PostListComponent,
   },
-  {
-    path: 'learning-page',
-    title: 'Learning Page',
-    component: LearningPageComponent,
-  },
+  // {
+  //   path: 'learning-page',
+  //   title: 'Learning Page',
+  //   component: LearningPageComponent,
+  // },
   {
     path: 'login-page',
     title: 'Login Page',
