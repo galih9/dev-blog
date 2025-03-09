@@ -6,15 +6,12 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  docData,
+  DocumentData,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-interface IArticle {
-  title: string;
-  content: string;
-  id: string;
-}
+import { IArticle } from '../types/article';
 
 @Injectable({
   providedIn: 'root',
@@ -30,14 +27,52 @@ export class ContentService {
         return response.map((doc: any) => ({
           title: doc['title'],
           content: doc['content'],
+          uid: doc['uid'],
+          displayName: doc['displayName'],
           id: doc['id'], // Ensure this line is present
         }));
       })
     );
   }
 
-  addArticle(title: string, content: string) {
-    const article = { title, content };
+  getArticleById(articleId: string): Observable<IArticle | undefined> {
+    const articleDocumentReference = doc(this.db, 'articles', articleId);
+
+    return docData(articleDocumentReference, { idField: 'id' }).pipe(
+      map((documentSnapshot: DocumentData | undefined) => {
+        if (documentSnapshot) {
+          return {
+            title: documentSnapshot['title'],
+            content: documentSnapshot['content'],
+            uid: documentSnapshot['uid'],
+            displayName: documentSnapshot['displayName'],
+            lastModified: documentSnapshot['lastModified'],
+            postedDate: documentSnapshot['postedDate'],
+            id: documentSnapshot['id'],
+          } as IArticle;
+        } else {
+          return undefined;
+        }
+      })
+    );
+  }
+
+  addArticle(
+    title: string,
+    content: string,
+    uid: string | undefined | null,
+    displayName: string | undefined | null,
+    postedDate: string | undefined | null,
+    lastModified: string | undefined | null
+  ) {
+    const article = {
+      title,
+      content,
+      uid,
+      displayName,
+      postedDate,
+      lastModified,
+    };
     const articlesCollection = collection(this.db, 'articles');
     return addDoc(articlesCollection, article);
   }

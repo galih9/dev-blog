@@ -1,0 +1,15 @@
+<div *ngIf="article">
+  <div class="w-full bg-white rounded-md p-4">
+    <markdown [data]="article.content"></markdown>
+
+    <mat-divider></mat-divider>
+
+    <div class="font-thin">
+      <p>Posted by: {{ article.displayName ?? "Anonymous" }}</p>
+      <p>Posted on: {{ article.postedDate ?? "-" }}</p>
+      <p>Last Modified: {{ article.lastModified ?? "-" }}</p>
+    </div>
+  </div>
+</div>
+<p *ngIf="!article && id">Loading...</p>
+<p *ngIf="!article && !id">No article selected.</p>

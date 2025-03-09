@@ -8,10 +8,16 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { CreatePostMdComponent } from './pages/create-post-md/create-post-md.component';
+import { ViewPostComponent } from './pages/view-post/view-post.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'user-info', component: UserInfoComponent },
+  {
+    path: 'detail-post',
+    canActivate: [AuthGuard],
+    component: ViewPostComponent,
+  },
   {
     path: 'users-management',
     title: 'Users Management',

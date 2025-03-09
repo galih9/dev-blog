@@ -7,12 +7,7 @@ import hiraganaYo from '../../../assets/hiragana_yoon.json';
 import katakana from '../../../assets/katakana.json';
 import katakanaDa from '../../../assets/katakana_dakuten.json';
 import katakanaYo from '../../../assets/katakana_yoon.json';
-
-interface ICharJP {
-  hira: string;
-  alpha: string;
-  id: string;
-}
+import { ICharJP } from '../../types/article';
 
 @Component({
   selector: 'app-learning-page',

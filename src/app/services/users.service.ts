@@ -9,15 +9,7 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-interface IUsers {
-  uid: string;
-  createdAt: string;
-  displayName: string;
-  email: string;
-  lastLogin: string;
-  photoUrl: string;
-}
+import { IUser } from '../types/article';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +17,7 @@ interface IUsers {
 export class UsersService {
   private db: Firestore = inject(Firestore);
 
-  getUsers(): Observable<IUsers[]> {
+  getUsers(): Observable<IUser[]> {
     return collectionData(collection(this.db, 'users'), {
       idField: 'id',
     }).pipe(

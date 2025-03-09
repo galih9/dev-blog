@@ -53,12 +53,12 @@ export class AuthService {
         displayName: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
-        createdAt: dayjs().format("DD/MM/YYYY, HH:mm:ss"),
-        lastLogin: dayjs().format("DD/MM/YYYY, HH:mm:ss"),
+        createdAt: dayjs().format('DD/MM/YYYY, HH:mm:ss'),
+        lastLogin: dayjs().format('DD/MM/YYYY, HH:mm:ss'),
       });
     } else {
       await updateDoc(userDocRef, {
-        lastLogin: dayjs().format("DD/MM/YYYY, HH:mm:ss"),
+        lastLogin: dayjs().format('DD/MM/YYYY, HH:mm:ss'),
       });
     }
   }

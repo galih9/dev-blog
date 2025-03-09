@@ -1,4 +1,15 @@
 <div class="bg-white rounded-md p-4">
+  <app-input
+    label="Title"
+    [(ngModel)]="title"
+    name="titleName"
+    ngDefaultControl
+  ></app-input>
+  <div class="grid grid-cols-2 gap-4">
+
+    <app-label label="Content"></app-label>
+    <app-label label="Preview"></app-label>
+  </div>
   <div class="w-full h-full flex gap-4">
     <div class="w-1/2 p-3 border rounded-md">
       <textarea

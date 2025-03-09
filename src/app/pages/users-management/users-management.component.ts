@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CustomTableComponent } from '../../components/custom-table/custom-table.component';
 import { CustomPaginatorComponent } from '../../components/custom-paginator/custom-paginator.component';
-import { IUser } from './types';
 import { Sort } from '@angular/material/sort';
 import { CustomButtonComponent } from '../../components/custom-button/custom-button.component';
 import { UsersService } from '../../services/users.service';
 import { Observable } from 'rxjs';
+import { IUser } from '../../types/article';
 
 @Component({
   selector: 'app-users-management',
